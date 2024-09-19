@@ -210,7 +210,7 @@ class AMultiHeadedAttention(nn.Module):
 ########################################################
 ########SeparableMultiHeadAttention
 
-class DeformableMultiHeadedAttention(nn.Module):
+class SeparableMultiHeadAttention(nn.Module):
     """Depthwise separable self-attention, including DSA and PSA."""
     def __init__(
             self, 
@@ -230,7 +230,7 @@ class DeformableMultiHeadedAttention(nn.Module):
         :param query_type: the type of q aggregate
         :param query_nb: the number of q aggregate by attention
         """
-        super(DeformableMultiHeadedAttention, self).__init__()
+        super(SeparableMultiHeadAttention, self).__init__()
 
         assert size % num_heads == 0, f"size {size} should be divided by num_heads {num_heads}."
 
