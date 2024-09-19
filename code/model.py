@@ -15,7 +15,7 @@ from signjoey.encoders import (
     Encoder,
     RecurrentEncoder,
     TransformerEncoder,
-    DeformableTransformerEncoder,
+    SepViTEncoder,
     QueryTransformerEncoder,
 )
 from signjoey.decoders import (
@@ -534,7 +534,7 @@ def build_model(
             == cfg["encoder"]["hidden_size"]
         ), "for transformer, emb_size must be hidden_size"
 
-        encoder = DeformableTransformerEncoder(
+        encoder = SepViTEncoder(
             **cfg["encoder"],
             emb_size=sgn_embed.embedding_dim,
             emb_dropout=enc_emb_dropout,
