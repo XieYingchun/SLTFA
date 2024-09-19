@@ -10,7 +10,7 @@ from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 from signjoey.helpers import freeze_params
 from signjoey.transformer_layers import (
-    DeformableTransformerEncoderLayer,
+    SepViTEncoderLayer,
     PositionalEncoding,
     TransformerDecoderLayer,
     TransformerEncoderLayer,
@@ -254,7 +254,7 @@ class TransformerEncoder(Encoder):
         )
 
 
-class DeformableTransformerEncoder(Encoder):
+class SepViTEncoder(Encoder):
     """
     Transformer Encoder
     """
@@ -287,12 +287,12 @@ class DeformableTransformerEncoder(Encoder):
         :param freeze: freeze the parameters of the encoder during training
         :param kwargs:
         """
-        super(DeformableTransformerEncoder, self).__init__()
+        super(SepViTEncoder, self).__init__()
         assert len(num_keys) == num_layers, "num kyes must equal num layers"
         # build all (num_layers) layers
         self.layers = nn.ModuleList(
             [
-                DeformableTransformerEncoderLayer(
+                SepViTEncoderLayer(
                     size=hidden_size,
                     ff_size=ff_size,
                     num_heads=num_heads,
