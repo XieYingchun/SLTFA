@@ -487,7 +487,7 @@ class TransformerEncoderLayer(nn.Module):
 
 ############################################
 ##########SepViTEncoderLayer
-class DeformableTransformerEncoderLayer(nn.Module):
+class SepViTEncoderLayer(nn.Module):
     def __init__(
             self,   
             query_type: str, 
@@ -498,11 +498,11 @@ class DeformableTransformerEncoderLayer(nn.Module):
             dropout: float = 0.1, 
             num_keys : int = 7,    
             ):
-        super(DeformableTransformerEncoderLayer, self).__init__()
+        super(SepViTEncoderLayer, self).__init__()
         self.layer_norm = nn.LayerNorm(size, eps=1e-6)
         self.act_layer = nn.GELU()
 
-        self.src_src_att = DeformableMultiHeadedAttention(query_type, query_nb, num_heads, size, dropout=dropout, num_keys=num_keys)
+        self.src_src_att = SeparableMultiHeadAttention(query_type, query_nb, num_heads, size, dropout=dropout, num_keys=num_keys)
         self.feed_forward = PositionwiseFeedForward(
             input_size=size, ff_size=ff_size, dropout=dropout
         )
